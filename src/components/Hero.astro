@@ -1,0 +1,103 @@
+---
+// components/Hero.astro
+import avatar from "../assets/png/avatar.png";
+import typescript from "../assets/svg/typescript.svg";
+import astro from "../assets/svg/astro.svg";
+import nodejs from "../assets/svg/nodejs.svg";
+import python from "../assets/svg/python.svg";
+---
+
+<section
+  class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 overflow-hidden pt-20"
+>
+  <!-- Avatar / Imagen -->
+  <img
+    src={avatar.src}
+    alt="Foto de Angel"
+    class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-xl mb-6 ring-4 ring-latte-blue/20 dark:ring-mocha-blue/20"
+  />
+
+  <!-- Título -->
+  <h1
+    class="text-4xl md:text-6xl font-extrabold mb-3 text-latte-text dark:text-mocha-text"
+  >
+    Hola, soy <span class="text-latte-blue dark:text-mocha-blue"
+      >Angel Salvador</span
+    >
+  </h1>
+
+  <!-- Subtítulo -->
+  <h2
+    class="text-xl md:text-2xl text-latte-subtext0 dark:text-mocha-subtext0 mb-4"
+  >
+    Desarrollador Full-stack · México 🇲🇽
+  </h2>
+
+  <!-- Descripción -->
+  <p
+    class="max-w-2xl text-latte-subtext1 dark:text-mocha-subtext1 leading-relaxed mb-8"
+  >
+    Desarrollador apasionado por crear, aprender y construir soluciones reales. <br
+    />
+    Mi meta es impulsar la
+    <span class="text-latte-blue dark:text-mocha-blue font-semibold"
+      >innovación tecnológica en Latinoamérica</span
+    >
+    y compartirla con el mundo.
+  </p>
+
+  <!-- Tecnologías -->
+  <div class="flex gap-6 opacity-80">
+    <!-- TypeScript -->
+    <div class="relative group cursor-pointer">
+      <div
+        class="absolute inset-0 bg-latte-blue dark:bg-mocha-blue blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 scale-150"
+      >
+      </div>
+      <img
+        src={typescript.src}
+        class="w-10 h-10 relative z-10 transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-2"
+        alt="TypeScript"
+      />
+    </div>
+
+    <!-- Astro -->
+    <div class="relative group cursor-pointer">
+      <div
+        class="absolute inset-0 bg-latte-peach dark:bg-mocha-peach blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 scale-150"
+      >
+      </div>
+      <img
+        src={astro.src}
+        class="w-10 h-10 relative z-10 transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-2"
+        alt="Astro"
+      />
+    </div>
+
+    <!-- Node.js -->
+    <div class="relative group cursor-pointer">
+      <div
+        class="absolute inset-0 bg-latte-green dark:bg-mocha-green blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 scale-150"
+      >
+      </div>
+      <img
+        src={nodejs.src}
+        class="w-10 h-10 relative z-10 transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-2"
+        alt="Node.js"
+      />
+    </div>
+
+    <!-- Python -->
+    <div class="relative group cursor-pointer">
+      <div
+        class="absolute inset-0 bg-latte-yellow dark:bg-mocha-yellow blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 scale-150"
+      >
+      </div>
+      <img
+        src={python.src}
+        class="w-10 h-10 relative z-10 transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-2"
+        alt="Python"
+      />
+    </div>
+  </div>
+</section>

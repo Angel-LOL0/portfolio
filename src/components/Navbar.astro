@@ -1,0 +1,289 @@
+---
+// components/Navbar.astro
+---
+
+<nav
+  class="fixed top-0 w-full z-50 bg-latte-base/80 dark:bg-mocha-base/80 backdrop-blur-lg border-b border-latte-surface0 dark:border-mocha-surface0"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo / Nombre -->
+      <a href="/" class="flex items-center gap-2 group">
+        <div
+          class="w-10 h-10 rounded-full bg-linear-to-br from-latte-blue to-latte-mauve dark:from-mocha-blue dark:to-mocha-mauve flex items-center justify-center font-bold text-white group-hover:scale-110 transition-transform"
+        >
+          AS
+        </div>
+        <span
+          class="font-bold text-xl text-latte-text dark:text-mocha-text hidden sm:block"
+        >
+          Angel Salvador
+        </span>
+      </a>
+
+      <!-- Links de navegación -->
+      <div class="hidden md:flex items-center gap-8">
+        <a
+          href="#about"
+          class="text-latte-text dark:text-mocha-text hover:text-latte-blue dark:hover:text-mocha-blue transition font-medium"
+        >
+          Sobre mí
+        </a>
+        <a
+          href="#pinned-projects"
+          class="text-latte-text dark:text-mocha-text hover:text-latte-blue dark:hover:text-mocha-blue transition font-medium"
+        >
+          Proyectos
+        </a>
+        <a
+          href="#contact"
+          class="text-latte-text dark:text-mocha-text hover:text-latte-blue dark:hover:text-mocha-blue transition font-medium"
+        >
+          Contacto
+        </a>
+      </div>
+
+      <!-- Theme Switcher + Mobile Menu -->
+      <div class="flex items-center gap-4">
+        <!-- Theme Switcher -->
+        <div class="relative" id="theme-switcher">
+          <button
+            id="theme-button"
+            class="p-2 rounded-lg bg-latte-surface0 dark:bg-mocha-surface0 text-latte-text dark:text-mocha-text hover:bg-latte-surface1 dark:hover:bg-mocha-surface1 transition"
+            aria-label="Cambiar tema"
+          >
+            <svg
+              id="theme-icon-light"
+              class="w-5 h-5 hidden"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <svg
+              id="theme-icon-dark"
+              class="w-5 h-5 hidden"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              ></path>
+            </svg>
+            <svg
+              id="theme-icon-system"
+              class="w-5 h-5 hidden"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div
+            id="theme-menu"
+            class="absolute right-0 mt-2 w-48 rounded-xl bg-latte-base dark:bg-mocha-base border border-latte-surface0 dark:border-mocha-surface0 shadow-lg hidden"
+          >
+            <button
+              data-theme="light"
+              class="w-full px-4 py-3 text-left hover:bg-latte-surface0 dark:hover:bg-mocha-surface0 transition flex items-center gap-3 rounded-t-xl"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-latte-text dark:text-mocha-text">Claro</span>
+            </button>
+            <button
+              data-theme="dark"
+              class="w-full px-4 py-3 text-left hover:bg-latte-surface0 dark:hover:bg-mocha-surface0 transition flex items-center gap-3"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                ></path>
+              </svg>
+              <span class="text-latte-text dark:text-mocha-text">Oscuro</span>
+            </button>
+            <button
+              data-theme="system"
+              class="w-full px-4 py-3 text-left hover:bg-latte-surface0 dark:hover:bg-mocha-surface0 transition flex items-center gap-3 rounded-b-xl"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-latte-text dark:text-mocha-text">Sistema</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-button"
+          class="md:hidden p-2 rounded-lg bg-latte-surface0 dark:bg-mocha-surface0 text-latte-text dark:text-mocha-text"
+          aria-label="Menu"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-latte-surface0 dark:border-mocha-surface0"
+  >
+    <div class="px-4 py-4 space-y-3">
+      <a
+        href="#about"
+        class="block px-4 py-2 rounded-lg text-latte-text dark:text-mocha-text hover:bg-latte-surface0 dark:hover:bg-mocha-surface0 transition"
+      >
+        Sobre mí
+      </a>
+      <a
+        href="#pinned-projects"
+        class="block px-4 py-2 rounded-lg text-latte-text dark:text-mocha-text hover:bg-latte-surface0 dark:hover:bg-mocha-surface0 transition"
+      >
+        Proyectos
+      </a>
+      <a
+        href="#contact"
+        class="block px-4 py-2 rounded-lg text-latte-text dark:text-mocha-text hover:bg-latte-surface0 dark:hover:bg-mocha-surface0 transition"
+      >
+        Contacto
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script is:inline>
+  // Ejecutar antes de que se renderice la página para evitar flash
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined") {
+      const stored = localStorage.getItem("theme");
+      if (stored) return stored;
+    }
+    return "system";
+  };
+
+  const getSystemTheme = () => {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+
+  const applyTheme = (theme) => {
+    let actualTheme = theme;
+    if (theme === "system") {
+      actualTheme = getSystemTheme();
+    }
+
+    if (actualTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
+  // Aplicar tema inmediatamente
+  const theme = getThemePreference();
+  applyTheme(theme);
+
+  // Escuchar cambios en el sistema
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      const currentTheme = getThemePreference();
+      if (currentTheme === "system") {
+        applyTheme("system");
+      }
+    });
+
+  // Función global para cambiar tema
+  window.setTheme = (newTheme) => {
+    localStorage.setItem("theme", newTheme);
+    applyTheme(newTheme);
+
+    // Disparar evento personalizado
+    window.dispatchEvent(new CustomEvent("themechange", { detail: newTheme }));
+  };
+
+  // Función global para obtener tema actual
+  window.getTheme = () => {
+    return getThemePreference();
+  };
+
+  // Theme Switcher Logic
+  const themeButton = document.getElementById("theme-button");
+  const themeMenu = document.getElementById("theme-menu");
+  const themeButtons = document.querySelectorAll("[data-theme]");
+  const icons = {
+    light: document.getElementById("theme-icon-light"),
+    dark: document.getElementById("theme-icon-dark"),
+    system: document.getElementById("theme-icon-system"),
+  };
+
+  const updateIcon = () => {
+    const currentTheme = window.getTheme();
+    Object.values(icons).forEach((icon) => icon?.classList.add("hidden"));
+    icons[currentTheme]?.classList.remove("hidden");
+  };
+
+  themeButton?.addEventListener("click", () => {
+    themeMenu?.classList.toggle("hidden");
+  });
+
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const theme = button.getAttribute("data-theme");
+      if (theme) {
+        window.setTheme(theme);
+        updateIcon();
+        themeMenu?.classList.add("hidden");
+      }
+    });
+  });
+
+  // Cerrar menu al hacer click fuera
+  document.addEventListener("click", (e) => {
+    if (!themeButton?.contains(e.target) && !themeMenu?.contains(e.target)) {
+      themeMenu?.classList.add("hidden");
+    }
+  });
+
+  // Mobile Menu Logic
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  mobileMenuButton?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
+
+  // Actualizar icono al cargar
+  updateIcon();
+  window.addEventListener("themechange", updateIcon);
+</script>
