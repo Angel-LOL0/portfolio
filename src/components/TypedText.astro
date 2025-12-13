@@ -1,0 +1,85 @@
+<div class="min-h-2.5 flex items-center justify-center">
+  <div class="flex items-center gap-2">
+    <span
+      class="text-lg md:text-xl text-latte-subtext0 dark:text-mocha-subtext0"
+    >
+      →
+    </span>
+    <span
+      id="typed-text"
+      class="text-lg md:text-xl text-latte-blue dark:text-mocha-blue font-semibold"
+    ></span>
+  </div>
+</div>
+
+<script>
+  import Typed from "typed.js";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const typed = new Typed("#typed-text", {
+      strings: [
+        "Transformando <strong>ideas</strong> en código",
+        "Construyendo el <strong>futuro</strong> tech",
+        "De <strong>México</strong> 🇲🇽 para el mundo 🌎",
+        "Creando <strong>soluciones reales</strong>",
+        "Full-stack con <strong>TypeScript</strong>",
+        "Apasionado por <strong>aprender</strong>",
+        "<strong>Open Source</strong> contributor",
+        "Impulsando la <strong>innovación</strong>",
+      ],
+      typeSpeed: 60,
+      backSpeed: 40,
+      backDelay: 2500,
+      startDelay: 800,
+      loop: true,
+      showCursor: true,
+      cursorChar: "▊",
+      autoInsertCss: true,
+      contentType: "html", // Permite HTML para <strong>
+      shuffle: false,
+      fadeOut: false,
+      fadeOutDelay: 500,
+      smartBackspace: true,
+    });
+
+    // Cleanup al cambiar de página (si usas ViewTransitions)
+    document.addEventListener("astro:before-swap", () => {
+      typed.destroy();
+    });
+  });
+</script>
+
+<style>
+  /* Estilo personalizado para el cursor */
+  :global(.typed-cursor) {
+    color: #89b4fa;
+    font-weight: 300;
+    animation: blink 1s infinite;
+  }
+
+  :global(.dark .typed-cursor) {
+    color: #89b4fa;
+  }
+
+  /* Animación del cursor */
+  @keyframes blink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Estilo para el texto en negrita dentro del typed */
+  :global(#typed-text strong) {
+    font-weight: 700;
+    color: var(--typed-highlight, #89b4fa);
+  }
+
+  :global(.dark #typed-text strong) {
+    --typed-highlight: #b4befe;
+  }
+</style>

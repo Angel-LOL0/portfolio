@@ -1,5 +1,5 @@
 ---
-// components/Hero.astro
+import TypedText from "../components/TypedText.astro";
 import avatar from "../assets/png/avatar.png";
 import typescript from "../assets/svg/typescript.svg";
 import astro from "../assets/svg/astro.svg";
@@ -8,13 +8,14 @@ import python from "../assets/svg/python.svg";
 ---
 
 <section
+  id="hero"
   class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 overflow-hidden pt-20"
 >
   <!-- Avatar / Imagen -->
   <img
     src={avatar.src}
     alt="Foto de Angel"
-    class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-xl mb-6 ring-4 ring-latte-blue/20 dark:ring-mocha-blue/20"
+    class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-xl mb-6 ring-4 ring-latte-blue/20 dark:ring-mocha-blue/20 hover:scale-105 transition-transform duration-300"
   />
 
   <!-- Título -->
@@ -28,14 +29,17 @@ import python from "../assets/svg/python.svg";
 
   <!-- Subtítulo -->
   <h2
-    class="text-xl md:text-2xl text-latte-subtext0 dark:text-mocha-subtext0 mb-4"
+    class="text-xl md:text-2xl text-latte-subtext0 dark:text-mocha-subtext0 mb-6"
   >
     Desarrollador Full-stack · México 🇲🇽
   </h2>
 
+  <!-- Typed.js Component -->
+  <TypedText />
+
   <!-- Descripción -->
   <p
-    class="max-w-2xl text-latte-subtext1 dark:text-mocha-subtext1 leading-relaxed mb-8"
+    class="max-w-2xl text-latte-subtext1 dark:text-mocha-subtext1 leading-relaxed mb-8 mt-4"
   >
     Desarrollador apasionado por crear, aprender y construir soluciones reales. <br
     />
@@ -45,7 +49,6 @@ import python from "../assets/svg/python.svg";
     >
     y compartirla con el mundo.
   </p>
-
   <!-- Tecnologías -->
   <div class="flex gap-6 opacity-80">
     <!-- TypeScript -->
@@ -98,6 +101,19 @@ import python from "../assets/svg/python.svg";
         class="w-10 h-10 relative z-10 transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-2"
         alt="Python"
       />
+    </div>
+  </div>
+
+  <!-- Decoración de fondo -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+    <div
+      class="absolute top-1/4 left-1/4 w-96 h-96 bg-latte-blue/10 dark:bg-mocha-blue/10 rounded-full blur-3xl animate-pulse"
+    >
+    </div>
+    <div
+      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-latte-mauve/10 dark:bg-mocha-mauve/10 rounded-full blur-3xl animate-pulse"
+      style="animation-delay: 1s;"
+    >
     </div>
   </div>
 </section>

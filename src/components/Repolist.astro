@@ -1,4 +1,5 @@
 ---
+import { FileX, Pin, Star, Rocket } from "@lucide/astro";
 import {
   fetchPinnedRepos,
   fetchPopularRepos,
@@ -16,22 +17,21 @@ try {
     fetchPopularRepos(),
     fetchCreatedRepos(),
   ]);
-} catch (error) {
-  console.error("Error al cargar repositorios:", error);
-}
+} catch (error) {}
 ---
 
-<div
-  class="repo-card block p-6 rounded-2xl bg-latte-base dark:bg-mocha-base min-h-screen"
->
+<div class="bg-latte-base dark:bg-mocha-base min-h-screen">
   <!-- Sección: Repositorios Importantes (Pinneados) -->
   {
     pinnedRepos.length > 0 && (
       <section id="pinned-projects" class="max-w-6xl mx-auto px-4 py-20">
         <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-latte-text dark:text-mocha-text">
-            📌 Repositorios Importantes
-          </h2>
+          <div class="flex gap-2 justify-center">
+            <Pin class="transition size-9 md:size-16 text-latte-blue dark:text-mocha-blue" />
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-latte-text dark:text-mocha-text">
+              Repositorios Importantes
+            </h2>
+          </div>
           <p class="text-lg text-latte-subtext0 dark:text-mocha-subtext0">
             Proyectos seleccionados personalmente
           </p>
@@ -51,9 +51,14 @@ try {
     popularRepos.length > 0 && (
       <section id="popular-projects" class="max-w-6xl mx-auto px-4 py-20">
         <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-latte-text dark:text-mocha-text">
-            ⭐ Repositorios Destacados
-          </h2>
+          <div class="flex gap-2 justify-center">
+            <>
+              <Star class="transition size-9 md:size-16 text-latte-yellow dark:text-mocha-yellow" />
+              <h2 class="text-4xl md:text-5xl font-bold mb-4 text-latte-text dark:text-mocha-text">
+                Repositorios Destacados
+              </h2>
+            </>
+          </div>
           <p class="text-lg text-latte-subtext0 dark:text-mocha-subtext0">
             Mis proyectos más populares en GitHub
           </p>
@@ -73,9 +78,12 @@ try {
     createdRepos.length > 0 && (
       <section id="recent-projects" class="max-w-6xl mx-auto px-4 py-20">
         <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-latte-text dark:text-mocha-text">
-            🚀 Repositorios Recientes
-          </h2>
+          <div class="flex gap-2 justify-center">
+            <Rocket class="transition size-9 md:size-16 text-latte-red dark:text-mocha-red" />
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-latte-text dark:text-mocha-text">
+              Repositorios Recientes
+            </h2>
+          </div>
           <p class="text-lg text-latte-subtext0 dark:text-mocha-subtext0">
             Mis proyectos más recientes en GitHub
           </p>
@@ -97,19 +105,7 @@ try {
       createdRepos.length === 0 && (
         <div class="max-w-6xl mx-auto px-4 py-20">
           <div class="text-center py-20 bg-latte-mantle/50 dark:bg-mocha-mantle/50 rounded-3xl border border-latte-surface0 dark:border-mocha-surface0">
-            <svg
-              class="w-16 h-16 mx-auto mb-4 text-latte-overlay0 dark:text-mocha-overlay0"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
+            <FileX class="w-16 h-16 mx-auto mb-4 text-latte-overlay0 dark:text-mocha-overlay0" />
             <h3 class="text-2xl font-bold text-latte-text dark:text-mocha-text mb-2">
               No se encontraron repositorios
             </h3>
@@ -121,49 +117,3 @@ try {
       )
   }
 </div>
-
-<script>
-  // Animación de entrada para las tarjetas
-  document.addEventListener("DOMContentLoaded", () => {
-    const cards = document.querySelectorAll(".repo-card");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add("animate-fade-in");
-            }, index * 100);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      }
-    );
-
-    cards.forEach((card) => {
-      card.classList.add("opacity-0", "translate-y-8");
-      observer.observe(card);
-    });
-  });
-</script>
-
-<style>
-  .animate-fade-in {
-    animation: fadeInUp 0.6s ease-out forwards;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(2rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

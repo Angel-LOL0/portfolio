@@ -1,0 +1,276 @@
+---
+// components/Footer.astro
+import {
+  Mail,
+  MapPin,
+  Heart,
+  ArrowUp,
+  ChevronRight,
+  Github,
+  Linkedin,
+  Twitter,
+} from "@lucide/astro";
+
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/tuusuario",
+    icon: Github,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/tuusuario",
+    icon: Linkedin,
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/tuusuario",
+    icon: Twitter,
+  },
+  {
+    name: "Email",
+    url: "mailto:tu@email.com",
+    icon: Mail,
+  },
+];
+
+const quickLinks = [
+  { name: "Inicio", href: "#hero" },
+  { name: "Sobre mí", href: "#about" },
+  { name: "Proyectos", href: "#pinned-projects" },
+  { name: "Contacto", href: "#contact" },
+];
+
+const techStack = ["TypeScript", "Astro", "Node.js", "Python", "Tailwind CSS"];
+---
+
+<footer
+  class="relative bg-latte-mantle dark:bg-mocha-mantle border-t border-latte-surface0 dark:border-mocha-surface0 mt-20"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Grid principal -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <!-- Columna 1: Sobre mí -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-2">
+          <div
+            class="w-10 h-10 rounded-full bg-linear-to-br from-latte-blue to-latte-mauve dark:from-mocha-blue dark:to-mocha-mauve flex items-center justify-center font-bold text-white"
+          >
+            AS
+          </div>
+          <span class="font-bold text-xl text-latte-text dark:text-mocha-text">
+            Angel Salvador
+          </span>
+        </div>
+        <p
+          class="text-sm text-latte-subtext0 dark:text-mocha-subtext0 leading-relaxed"
+        >
+          Desarrollador Full-stack apasionado por crear soluciones innovadoras y
+          compartir conocimiento con la comunidad.
+        </p>
+        <div
+          class="flex items-center gap-2 text-sm text-latte-subtext1 dark:text-mocha-subtext1"
+        >
+          <MapPin class="w-4 h-4" />
+          <span>México 🇲🇽</span>
+        </div>
+      </div>
+
+      <!-- Columna 2: Enlaces rápidos -->
+      <div>
+        <h3
+          class="font-semibold text-latte-text dark:text-mocha-text mb-4 text-lg"
+        >
+          Enlaces rápidos
+        </h3>
+        <ul class="space-y-2">
+          {
+            quickLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-latte-subtext0 dark:text-mocha-subtext0 hover:text-latte-blue dark:hover:text-mocha-blue transition-colors inline-flex items-center gap-2 group"
+                >
+                  <ChevronRight class="w-4 h-4 opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all" />
+                  {link.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Columna 3: Tech Stack -->
+      <div>
+        <h3
+          class="font-semibold text-latte-text dark:text-mocha-text mb-4 text-lg"
+        >
+          Tech Stack
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {
+            techStack.map((tech) => (
+              <span class="px-3 py-1 text-xs font-medium bg-latte-surface0 dark:bg-mocha-surface0 text-latte-text dark:text-mocha-text rounded-full hover:bg-latte-surface1 dark:hover:bg-mocha-surface1 transition">
+                {tech}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Columna 4: Redes sociales -->
+      <div>
+        <h3
+          class="font-semibold text-latte-text dark:text-mocha-text mb-4 text-lg"
+        >
+          Conéctate
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          {
+            socialLinks.map((social) => {
+              const Icon = social.icon;
+              return (
+                <a
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group relative"
+                  aria-label={social.name}
+                >
+                  <div class="w-10 h-10 rounded-lg bg-latte-surface0 dark:bg-mocha-surface0 flex items-center justify-center text-latte-text dark:text-mocha-text hover:bg-latte-blue dark:hover:bg-mocha-blue hover:text-latte-crust dark:hover:text-mocha-crust transition-all hover:scale-110 hover:-translate-y-1">
+                    <Icon class="w-5 h-5" />
+                  </div>
+                  <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-latte-surface2 dark:bg-mocha-surface2 text-latte-text dark:text-mocha-text text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    {social.name}
+                  </span>
+                </a>
+              );
+            })
+          }
+        </div>
+
+        <!-- Newsletter (opcional) -->
+        <div class="mt-6">
+          <p class="text-sm text-latte-subtext0 dark:text-mocha-subtext0 mb-2">
+            ¿Quieres recibir actualizaciones?
+          </p>
+          <form class="flex gap-2">
+            <input
+              type="email"
+              placeholder="tu@email.com"
+              class="flex-1 px-3 py-2 text-sm bg-latte-surface0 dark:bg-mocha-surface0 text-latte-text dark:text-mocha-text border border-latte-surface1 dark:border-mocha-surface1 rounded-lg focus:outline-none focus:ring-2 focus:ring-latte-blue dark:focus:ring-mocha-blue"
+            />
+            <button
+              type="submit"
+              class="px-4 py-2 text-sm font-medium bg-latte-blue dark:bg-mocha-blue text-latte-crust dark:text-mocha-crust rounded-lg hover:bg-latte-sapphire dark:hover:bg-mocha-sapphire transition"
+            >
+              Suscribir
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="border-t border-latte-surface0 dark:border-mocha-surface0 my-8">
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <div
+        class="flex items-center gap-2 text-sm text-latte-subtext0 dark:text-mocha-subtext0"
+      >
+        <span>© {currentYear} Angel Salvador.</span>
+        <span class="hidden md:inline">Hecho con</span>
+        <Heart
+          class="w-4 h-4 text-latte-red dark:text-mocha-red animate-pulse fill-current"
+        />
+        <span class="hidden md:inline">en México</span>
+      </div>
+
+      <div class="flex items-center gap-6 text-sm">
+        <a
+          href="/privacy"
+          class="text-latte-subtext0 dark:text-mocha-subtext0
+        hover:text-latte-blue dark:hover:text-mocha-blue transition"
+        >
+          Privacidad
+        </a>
+        <a
+          href="/terms"
+          class="text-latte-subtext0 dark:text-mocha-subtext0
+      hover:text-latte-blue dark:hover:text-mocha-blue transition"
+        >
+          Términos
+        </a>
+        <button
+          id="scroll-to-top"
+          class="flex items-center gap-1 text-latte-subtext0 dark:text-mocha-subtext0 hover:text-latte-blue dark:hover:text-mocha-blue transition group cursor-pointer"
+          aria-label="Volver arriba"
+        >
+          <span>Volver arriba</span>
+          <ArrowUp
+            class="w-4 h-4 group-hover:-translate-y-1 transition-transform"
+          />
+        </button>
+      </div>
+    </div>
+
+    <!-- Indicador de versión (opcional) -->
+    <div class="mt-6 text-center">
+      <span class="text-xs text-latte-overlay0 dark:text-mocha-overlay0">
+        v1.0.0 • Construido con <a
+          href="https://astro.build"
+          target="_blank"
+          class="hover:text-latte-blue dark:hover:text-mocha-blue transition"
+          >Astro</a
+        >
+      </span>
+    </div>
+
+    <!-- Decoración de fondo -->
+    <div
+      class="absolute inset-0 overflow-hidden pointer-events-none opacity-30"
+    >
+      <div
+        class="absolute -bottom-20 -left-20 w-72 h-72 bg-latte-blue dark:bg-mocha-blue rounded-full blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute -bottom-20 -right-20 w-72 h-72 bg-latte-mauve dark:bg-mocha-mauve rounded-full blur-3xl"
+      >
+      </div>
+    </div>
+
+    <script>
+      // Scroll to top functionality
+      const scrollToTopBtn = document.getElementById("scroll-to-top");
+
+      scrollToTopBtn?.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Newsletter form (opcional - conectar con tu backend)
+      const newsletterForm = document.querySelector("footer form");
+
+      newsletterForm?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = (e.target as HTMLFormElement).querySelector(
+          "input"
+        )?.value;
+
+        // Aquí conectarías con tu servicio de email
+        console.log("Newsletter signup:", email);
+
+        // Mostrar mensaje de confirmación
+        alert("¡Gracias por suscribirte! 🎉");
+        (e.target as HTMLFormElement).reset();
+      });
+    </script>
+  </div>
+</footer>

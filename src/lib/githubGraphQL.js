@@ -7,7 +7,7 @@ export async function fetchPinnedRepos() {
 query {
   viewer {
     login
-    pinnedItems(first: 6, types: REPOSITORY) {
+    pinnedItems(first: 3, types: REPOSITORY) {
       nodes {
         ... on Repository {
           name
@@ -16,6 +16,9 @@ query {
           forkCount
           url
           homepageUrl
+          watchers {
+            totalCount
+          }
           languages(first: 3, orderBy: {field: SIZE, direction: DESC}) {
             nodes { name }
           }
@@ -56,7 +59,7 @@ query {
   viewer {
     login
     repositories(
-      first: 6
+      first: 3
       orderBy: {field: STARGAZERS, direction: DESC}
       privacy: PUBLIC
       isFork: false
@@ -110,7 +113,7 @@ query {
   viewer {
     login
     repositories(
-      first: 6
+      first: 3
       orderBy: {field: CREATED_AT, direction: DESC}
       privacy: PUBLIC
       isFork: false
@@ -164,7 +167,7 @@ query {
   viewer {
     login
     repositories(
-      first: 6
+      first: 3
       orderBy: {field: UPDATED_AT, direction: DESC}
       privacy: PUBLIC
       isFork: false
