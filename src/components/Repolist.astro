@@ -1,10 +1,11 @@
 ---
 import type { GitHubRepository } from "types/github";
 import { FileX, Pin, Star, Rocket } from "@lucide/astro";
-import RepoCard from "components/RepoCard.astro";
+import RepoCard from "./RepoCard.astro";
 
 const { request } = Astro;
 const baseUrl = new URL(request.url).origin;
+export const prerender = false;
 
 let pinnedRepos: GitHubRepository[] = [];
 let popularRepos: GitHubRepository[] = [];
