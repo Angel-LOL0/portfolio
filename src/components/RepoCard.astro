@@ -1,8 +1,9 @@
 ---
 import { Star, GitFork, Eye, ExternalLink, Github } from "@lucide/astro";
+import type { GitHubRepository } from "types/github";
 
 interface Props {
-  repo: any;
+  repo: GitHubRepository;
   showStats?: boolean;
 }
 
